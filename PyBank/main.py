@@ -22,10 +22,7 @@ with open(budget_data_csv_path, newline="") as csvfile:
 
     csv_header = next(csvfile)
 
-    #print(f"Header: {csv_header}")
-    # This prints -->> Header: Date, Profit/Losses
-             
-    # Read through each row of data after the header
+  
     for row in csv_reader:
 
         
@@ -47,22 +44,18 @@ with open(budget_data_csv_path, newline="") as csvfile:
 
             profit_loss_changes.append(profit_loss_change)
 
-            # Make the current_month_loss to be previous_month_profit_loss for the next loop
             previous_month_profit_loss = current_month_profit_loss
 
-    #sum and average of the changes in "Profit/Losses" over the entire period
+
     sum_profit_loss = sum(profit_loss_changes)
     average_profit_loss = round(sum_profit_loss/(count_months - 1), 2)
 
-    # highest and lowest changes in "Profit/Losses" over the entire period
     highest_change = max(profit_loss_changes)
     lowest_change = min(profit_loss_changes)
 
-    # Locate the index value of highest and lowest changes in "Profit/Losses" over the entire period
     highest_month_index = profit_loss_changes.index(highest_change)
     lowest_month_index = profit_loss_changes.index(lowest_change)
 
-    # Assign best and worst month
     best_month = months[highest_month_index]
     worst_month = months[lowest_month_index]
 
